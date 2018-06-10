@@ -1,0 +1,9 @@
+{
+  "author": {
+    "name": "kiyoseuke"
+  },
+  "dependencies": {},
+  "main": "./main/main.js",
+  "name": "video-player",
+  "version": "1.0.0"
+}
