@@ -8,9 +8,14 @@
     "electron-packager": "^12.1.0",
     "fs-extra": "^6.0.1",
     "klaw": "^2.1.1",
-    "pug": "^2.0.3",
-    "sass": "^1.5.1"
+    "node-sass": "^4.9.0",
+    "pug": "^2.0.3"
   },
   "dependencies": {},
-  "main": "./build.js"
+  "main": "./build.js",
+  "scripts": {
+    "build": "node ./build/build",
+    "pack": "node ./build/pack",
+    "watch-scss": "./node_modules/.bin/node-sass -w ./source/renderer/stylesheets/common.scss ./dist/renderer/stylesheets/common.css"
+  }
 }

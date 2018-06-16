@@ -1,18 +1,17 @@
 'use strict';
 
-const { version, author } = require('../dist/package.json');
+const { version, author } = require('../package.json');
+const { electron } = require('../package.json').devDependencies;
 const fs = require('fs-extra');
 const packager = require('electron-packager');
 const builder = require('electron-builder');
-const { electron } = require('./package.json').devDependencies;
 const appName = 'VideoPlayer';
 
 const pack = () => {
     const opts = {
         name: appName,
-        dir: '../dist',
-        out: `../${appName}`,
-        icon: '../dist/icon.ico',
+        dir: `./dist`,
+        out: `./${appName}`,
         platform: 'win32',
         arch: 'x64',
         electronVersion: electron.replace('^', ''),
@@ -27,7 +26,7 @@ const pack = () => {
 (async () => {
     try {
         const appPaths = await pack();
-        await fs.copy('../resources/ffmpeg', `${appPaths}/resources/ffmpeg`);
+        await fs.copy('./resources/ffmpeg', `${appPaths}/resources/ffmpeg`);
         console.log('Done: ' + appPaths);
     } catch (error) {
         console.error(error.message);

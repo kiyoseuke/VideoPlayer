@@ -1,3 +1,2 @@
-cd ./build
-node build
-node pack
+node ./build/build
+node ./build/pack

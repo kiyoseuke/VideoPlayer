@@ -4,8 +4,8 @@ const K = require('klaw');
 const path = require('path');
 const fs = require('fs-extra');
 const Compiler = require('./Compiler');
-const root = '../source';
-const dist = '../dist';
+const root = `${process.cwd()}/source`;
+const dist = `${process.cwd()}/dist`;
 
 const toDst = src => {
     const parsedPath = path.parse(src);
@@ -49,6 +49,6 @@ const klaw = () => {
         }
         console.log('build completed.');
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
     }
 })();

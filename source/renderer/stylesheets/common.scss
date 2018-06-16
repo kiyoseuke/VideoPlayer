@@ -1,80 +1,87 @@
-html, body {
-    height: 100%;
-    margin: 0px;
+@mixin button() {
+  border: 0;
+  cursor: pointer;
+  &:disabled {
+    pointer-events: none;
+  }
 }
 
-button {
-    cursor: pointer;
-    border: 0;
-    &:hover {
-        background-color: #0000ff;
-        color: #ffffff;
-    }
-    &:disabled {
-        pointer-events: none;
-    }
+body {
+  background-color: #000;
+  color: #fff;
+  height: 100%;
+  margin: 0;
 }
 
 #header {
-    position: relative;
+  background-color: #ededed;
+  color: #000;
+  height: 25px;
+  position: relative;
+  top: 0;
 }
-#icon {
-    height: 25px;
-}
+
 #file_button {
-    width: 150px;
-    height: 25px;
-    position: absolute;
-    left: 30px;
+  @include button();
+  background-color: #ededed;
+  height: 25px;
+  position: absolute;
+  top: 0;
+  width: 150px;
+  &:hover {
+    background-color: #d3d3d3;
+  }
 }
+
 #file_name {
+    left: 160px;
     position: absolute;
-    left: 185px;
 }
+
 #close_button {
-    width: 50px;
-    height: 25px;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    background-color: #ffffff;
-    font-size: 20px;
-    &:hover {
-        background-color: #ff0000;
-        color: #ffffff;
-    }
+  @include button();
+  width: 50px;
+  height: 25px;
+  position: absolute;
+  right: 0px;
+  background-color: #ededed;
+  font-size: 20px;
+  &:hover {
+    background-color: #ff0000;
+    color: #ffffff;
+  }
 }
 
 #contents {
-    position: relative;
-    margin: 10px;
-}
-
-#video_area {
-    width: 960px;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    margin-right: auto;
-    margin-left: auto;
+  position: relative;
 }
 
 #video {
-    width: 960px;
-    height: 540px;
-    background-color: #000000;
+  width: 960px;
+  height: 540px;
+  background-color: #000000;
 }
 
 #control_area {
-    position: absolute;
-    top: 580px;
+  left: 10px;
+  position: absolute;
+  top: 550px;
 }
 
 #start_time_set_button, #end_time_set_button, #trim_button {
-    width: 70px;
-    height: 20px;
+  @include button();
+  background-color: #000;
+  color: #fff;
+  width: 70px;
+  height: 20px;
+  &:disabled {
+    color: #505050;
+  }
+  &:hover {
+    background-color: #505050;
+  }
 }
 
 #start_time, #end_time {
-    margin-left: 5px;
+  margin-left: 5px;
 }

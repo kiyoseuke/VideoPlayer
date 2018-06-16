@@ -3,7 +3,7 @@
 const path = require('path');
 const pug = require('pug');
 const fs = require('fs-extra');
-const sass = require('sass');
+const sass = require('node-sass');
 const { promisify } = require('util');
 const render = promisify(sass.render);
 

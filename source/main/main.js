@@ -8,8 +8,8 @@ const debuggable = false;
 try {
     app.on('ready', () => {
         const options = {
-            width: 1294,
-            height: 800,
+            width: 960,
+            height: 660,
             frame: false,
             resizable: false,
             show: false
