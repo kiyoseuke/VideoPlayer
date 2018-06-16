@@ -68,6 +68,11 @@ body {
   top: 550px;
 }
 
+#skip_time {
+  background-color: #000;
+  color: #fff;
+}
+
 #start_time_set_button, #end_time_set_button, #trim_button {
   @include button();
   background-color: #000;
