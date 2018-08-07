@@ -1,31 +1,6 @@
 'use strict';
 
-const { execFile } = require('child_process');
-
-/**
- * ffmpegを実行する
- * @param {string[]} args 引数
- */
-const execute = async args => {
-    return new Promise((resolve, reject) => {
-        const ffmpeg = `${process.cwd()}/resources/ffmpeg/bin/ffmpeg`;
-        const childProcess = execFile(ffmpeg, args, { maxBuffer: 400 * 1024 }, (error, stdout, stderr) => {
-            if (error) {
-                reject(error);
-                childProcess.kill();
-                return;
-            }
-            if (stderr) {
-                reject(new Error(stderr));
-                return;
-            }
-            resolve(stdout);
-        });
-        process.on('exit', () => {
-            childProcess.kill();
-        });
-    });
-};
+const { spawn } = require('child_process');
 
 module.exports = class VideoEditor {
     /**
@@ -47,20 +22,31 @@ module.exports = class VideoEditor {
         const time = Number(endTime) - Number(startTime);
         const args = ['-ss', String(startTime), '-i', this.src, '-t', String(time), this.dest];
         try {
-            return await execute(args);
+            return await this.execute(args);
         } catch (error) {
             throw error;
         }
     }
 
     /**
-     * ffmpegのバージョンを取得する
+     * ffmpegを実行する
+     * @param {string[]} args 引数
      */
-    static async getFFmpegVer() {
-        try {
-            return await execute(['-version']);
-        } catch (error) {
-            throw error;
-        }
+    execute(args) {
+        return new Promise((resolve, reject) => {
+            const ffmpeg = `${process.cwd()}/resources/ffmpeg/bin/ffmpeg`;
+            const childProcess = spawn(ffmpeg, args);
+            childProcess.stderr.on('data', (data) => {
+                reject(new Error(data));
+            });
+
+            childProcess.on('close', () => {
+                resolve();
+            });
+
+            process.on('exit', () => {
+                childProcess.kill();
+            });
+        });
     }
 };
