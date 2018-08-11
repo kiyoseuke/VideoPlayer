@@ -36,8 +36,8 @@ module.exports = class VideoEditor {
         return new Promise((resolve, reject) => {
             const ffmpeg = `${process.cwd()}/resources/ffmpeg/bin/ffmpeg`;
             const childProcess = spawn(ffmpeg, args);
-            childProcess.stderr.on('data', (data) => {
-                reject(new Error(data));
+            childProcess.on('error', (error) => {
+                reject(error);
             });
 
             childProcess.on('close', () => {
