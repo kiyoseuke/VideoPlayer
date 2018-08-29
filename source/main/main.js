@@ -3,41 +3,41 @@
 const { app, BrowserWindow } = require('electron');
 const EventManager = require('./EventManager');
 
-const debuggable = false;
+const debuggable = true;
 
 try {
-    app.on('ready', () => {
-        const options = {
-            width: 960,
-            height: 660,
-            frame: false,
-            resizable: false,
-            show: false
-        };
-        let mainWindow = new BrowserWindow(options);
+  app.on('ready', () => {
+    const options = {
+      autoHideMenuBar: true,
+      height: 720,
+      resizable: false,
+      show: false,
+      width: 1280
+    };
+    let mainWindow = new BrowserWindow(options);
 
-        mainWindow.once('ready-to-show', () => {
-            mainWindow.show();
-        });
-
-        mainWindow.on('closed', () => {
-            mainWindow = null;
-        });
-
-        mainWindow.loadURL(`file://${__dirname}/../renderer/index.html`);
-
-        new EventManager(mainWindow);
-
-        if (debuggable) {
-            mainWindow.webContents.toggleDevTools();
-        }
+    mainWindow.once('ready-to-show', () => {
+      mainWindow.show();
     });
 
-    app.on('window-all-closed', () => {
-        if (process.platform !== 'darwin') {
-            app.quit();
-        }
+    mainWindow.on('closed', () => {
+      mainWindow = null;
     });
+
+    mainWindow.loadURL(`file://${__dirname}/../renderer/index.html`);
+
+    new EventManager(mainWindow);
+
+    if (debuggable) {
+      mainWindow.webContents.toggleDevTools();
+    }
+  });
+
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      app.quit();
+    }
+  });
 } catch (error) {
-    console.error(error.message);
+  console.error(error.message);
 }

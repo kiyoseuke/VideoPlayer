@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VideoPlayer</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="folder-area">
+    <ul id="file-list">
+      <li id="folder-name">フォルダを選択</li>
+    </ul>
+  </div>
+  <div id="video-area">
+    <video id="video"></video>
+  </div>
+  <div id="controller-area">
+    <div>
+      <span>Skip Time: </span>
+      <select id="skip_time">
+        <option value="0.000001">0.000001</option>
+        <option value="0.1">0.1</option>
+        <option value="1">1</option>
+        <option value="10" selected>10</option>
+        <option value="30">30</option>
+        <option value="60">60</option>
+      </select>
+    </div>
+    <div><button id="start_time_set_button" disabled="disabled">Set Start</button><span id="start_time"></span></div>
+    <div><button id="end_time_set_button" disabled="disabled">Set End</button><span id="end_time"></span></div>
+    <div><button id="trim_button" disabled="disabled">Trim</button></div>
+  </div>
+  <script>require("./javascripts/index.js");</script>
+</body>
+
+</html>
