@@ -4,18 +4,18 @@ const { getCurrentWindow, dialog } = require('electron').remote;
 
 module.exports = class Dialog {
   /**
-   * 
-   * @param {*} title 
-   * @param {*} content 
+   * エラーダイアログを表示する
+   * @param {string} title タイトル
+   * @param {string} content 内容
    */
   static showErrorBox(title, content) {
     dialog.showErrorBox(title, content);
   }
 
   /**
-   * 
-   * @param {*} options 
-   * @param {*} callback 
+   * メッセージダイアログを表示する
+   * @param {Electron.MessageBoxOptions} options オプション
+   * @param {(response: number, checkboxChecked: boolean) => void} callback コールバック
    */
   static showMessageBox(options, callback) {
     dialog.showMessageBox(getCurrentWindow(), options, callback);

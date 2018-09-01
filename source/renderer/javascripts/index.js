@@ -132,7 +132,7 @@ addEventListener('DOMContentLoaded', () => {
       }, 250);
     }
   });
-  
+
   videoArea.addEventListener('dblclick', function () {
     const node = this.firstChild;
     if (node) {
@@ -184,8 +184,28 @@ addEventListener('DOMContentLoaded', () => {
           alert(error.message);
         }
       }
-      
+
       this.disabled = false;
     });
   });
+});
+
+let closeable = false;
+addEventListener('beforeunload', ev => {
+  if (ffmpeg.running && !closeable) {
+    ev.returnValue = false;
+    const options = {
+      buttons: ['Yes', 'No'],
+      cancelId: 1,
+      defaultId: 1,
+      message: '動画をトリミング中です。\nアプリを終了しますか？',
+      type: "question",
+    };
+    dialog.showMessageBox(options, response => {
+      if (response === 0) {
+        closeable = true;
+        close();
+      }
+    });
+  }
 });
