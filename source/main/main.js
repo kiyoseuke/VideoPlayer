@@ -1,9 +1,7 @@
 'use strict';
 
 const { app, BrowserWindow } = require('electron');
-const EventManager = require('./EventManager');
-
-const debuggable = true;
+const debuggable = false;
 
 try {
   app.on('ready', () => {
@@ -26,8 +24,6 @@ try {
     });
 
     mainWindow.loadURL(`file://${__dirname}/../renderer/index.html`);
-
-    new EventManager(mainWindow);
 
     if (debuggable) {
       mainWindow.webContents.toggleDevTools();

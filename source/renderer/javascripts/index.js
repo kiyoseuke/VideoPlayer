@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path');
-const eventManager = require('./EventManager');
 const dialog = require('./Dialog');
 const fs = require('fs');
 const { promisify } = require('util');
