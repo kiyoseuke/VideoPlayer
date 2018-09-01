@@ -15,9 +15,7 @@
       <li id="folder-name">フォルダを選択</li>
     </ul>
   </div>
-  <div id="video-area">
-    <video id="video"></video>
-  </div>
+  <div id="video-area"></div>
   <div id="controller-area">
     <div>
       <span>Skip Time: </span>
@@ -30,9 +28,15 @@
         <option value="60">60</option>
       </select>
     </div>
-    <div><button id="start_time_set_button" disabled="disabled">Set Start</button><span id="start_time"></span></div>
-    <div><button id="end_time_set_button" disabled="disabled">Set End</button><span id="end_time"></span></div>
-    <div><button id="trim_button" disabled="disabled">Trim</button></div>
+    <div>
+      <button id="start_time_set_button" disabled>Set Start</button>
+      <span id="start_time"></span></div>
+    <div>
+      <button id="end_time_set_button" disabled>Set End</button>
+      <span id="end_time"></span></div>
+    <div>
+      <button id="trim_button" disabled>Trim</button>
+    </div>
   </div>
   <script>require("./javascripts/index.js");</script>
 </body>

@@ -12,6 +12,7 @@ try {
       height: 720,
       resizable: false,
       show: false,
+      useContentSize: true,
       width: 1280
     };
     let mainWindow = new BrowserWindow(options);

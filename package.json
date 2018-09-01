@@ -8,7 +8,7 @@
     "electron-packager": "^12.1.0"
   },
   "scripts": {
-    "build": "node ./build/build",
-    "pack": "node ./build/pack"
-  }
+    "build": "node ./build.js"
+  },
+  "version": "0.0.1"
 }
